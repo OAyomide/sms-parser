@@ -23,7 +23,7 @@ Acct: 0175456083\nAmt: 2,000.00 CR \nDesc: -- --JAIZ BANK FAJUYI DUGBE IBADAN   
 ```
 the parser returns something like this:
 
-```json
+```js
 [
   { LITERAL: 'ACCT', INDEX: 4, VALUE: '0175456083\n' },
   { LITERAL: 'AMT', INDEX: 20, VALUE: '' },
