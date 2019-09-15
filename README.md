@@ -13,3 +13,48 @@ Yeah this particular version is the very first version. Let me say: **ITS NOT TH
 So easy on my code 🥺🙏
 
 So please hang around. After this parser, the development of the app continues! 😎😎.
+
+
+## What does this then return?
+Lets say you have this credit alert from GTBank (thats my bank):
+
+```
+Acct: 0175456083\nAmt: 2,000.00 CR \nDesc: -- --JAIZ BANK FAJUYI DUGBE IBADAN    OYNGSTAN9999002986\nAvail Bal: 129,696.51\n
+```
+the parser returns something like this:
+
+```json
+[
+  { LITERAL: 'ACCT', INDEX: 4, VALUE: '0175456083\n' },
+  { LITERAL: 'AMT', INDEX: 20, VALUE: '' },
+  { LITERAL: 'CR', INDEX: 33, VALUE: true },
+  {
+    LITERAL: 'DESC',
+    INDEX: 39,
+    VALUE: ': -- --JAIZ BANK FAJUYI DUGBE IBADAN    OYNGSTAN9999002986\n'
+  },
+  { LITERAL: 'BANK', INDEX: 55, VALUE: '' },
+  { LITERAL: 'BAL', INDEX: 107, VALUE: '129,696.51' }
+]
+```
+and tokens:
+
+```js
+const TOKENS = {
+  BANK: 'BANK',
+  ACCTNO: 'ACCT',
+  AMT: 'AMT',
+  DESC: 'DESC',
+  TRANSTYPECR: 'CR',
+  TRANSTYPEDR: 'DR',
+  BALANCE: 'BAL'
+}
+```
+the `INDEX` is the ending position of the token. Note this is for GTBank. This might change for other banks.
+
+
+So from the parser's output, we know that its a `CR` (credit) transaction, the `AMT` (amount) that left our account is: &#8358;2000. The `DESC` (description) is that its from JAIZ BANK at DUGBE IBADAN (therefore its from an ATM) and the `BAL` (balance left in accout) is &#8358;129, 696.51
+
+Tada! 🎊🎉 we got what we wanted!!
+
+Room for improvement though!
