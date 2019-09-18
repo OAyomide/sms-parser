@@ -198,5 +198,4 @@ function extractBalance(literalIndex) {
   return balStrings
 }
 
-
-AgbowoParserV1(data)
+module.exports = { AgbowoParserV1 }
