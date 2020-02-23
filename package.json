@@ -1,5 +1,5 @@
 {
-  "name": "maggi",
+  "name": "sms-parser",
   "version": "0.1.0",
   "description": "parse and extract alert info from banks sms",
   "main": "index.js",
